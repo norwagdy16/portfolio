@@ -1,2 +1,5 @@
 @import "tailwindcss";
 @plugin "daisyui";
+html {
+  scroll-padding-top: 100px; 
+}
