@@ -7,14 +7,13 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const sections = ["hero", "about", "portfolio", "what-i-do", "why-me"];
 
-
   useEffect(() => {
     document.documentElement.style.scrollPaddingTop = "100px";
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-40 bg-white shadow-md">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
+    <nav className="fixed top-0 left-0 w-full z-40 bg-white shadow-md pointer-events-none">
+      <div className="container mx-auto flex justify-between items-center py-4 px-6 pointer-events-auto">
         {/* Logo */}
         <div className="text-2xl font-bold text-pink-500">Portfolio</div>
 
@@ -57,7 +56,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white shadow-lg border-t border-pink-100">
+        <div className="md:hidden bg-white shadow-lg border-t border-pink-100 pointer-events-auto">
           <ul className="flex flex-col items-center py-4 space-y-4 text-lg font-medium text-gray-700">
             {sections.map((section, i) => (
               <li key={i}>
