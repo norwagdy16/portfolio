@@ -2,10 +2,13 @@
 
 import React, { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
-import { Menu, X } from "lucide-react"; // أيقونات الهامبرجر والإغلاق
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+ 
+  const sections = ["hero", "about", "portfolio", "what-i-do", "why-me"];
 
   return (
     <nav className="fixed w-full z-50 bg-white shadow-md">
@@ -15,16 +18,16 @@ export default function Navbar() {
 
         {/* Menu for large screens */}
         <ul className="hidden md:flex gap-6 text-lg font-medium text-gray-700">
-          {["hero", "about", "portfolio", "what-i-do"].map((section, i) => (
+          {sections.map((section, i) => (
             <li key={i}>
               <ScrollLink
                 to={section}
                 smooth={true}
                 duration={500}
+                offset={-100}
+                spy={true}
                 className="relative cursor-pointer hover:text-pink-500 transition-colors"
                 activeClass="text-pink-500 after:w-full"
-                spy={true}
-                offset={-80}
               >
                 {section === "hero"
                   ? "Home"
@@ -32,7 +35,9 @@ export default function Navbar() {
                   ? "About"
                   : section === "portfolio"
                   ? "Projects"
-                  : "Services"}
+                  : section === "what-i-do"
+                  ? "Services"
+                  : "Why Me"}
                 <span className="absolute left-0 -bottom-1 w-0 h-1 bg-pink-500 transition-all duration-300"></span>
               </ScrollLink>
             </li>
@@ -52,16 +57,16 @@ export default function Navbar() {
       {menuOpen && (
         <div className="md:hidden bg-white shadow-lg border-t border-pink-100">
           <ul className="flex flex-col items-center py-4 space-y-4 text-lg font-medium text-gray-700">
-            {["hero", "about", "portfolio", "what-i-do"].map((section, i) => (
+            {sections.map((section, i) => (
               <li key={i}>
                 <ScrollLink
                   to={section}
                   smooth={true}
                   duration={500}
-                  className="cursor-pointer hover:text-pink-500 transition-colors"
+                  offset={-100}
                   spy={true}
-                  offset={-80}
-                  onClick={() => setMenuOpen(false)} // يقفل المينيو بعد الضغط
+                  onClick={() => setMenuOpen(false)}
+                  className="cursor-pointer hover:text-pink-500 transition-colors"
                 >
                   {section === "hero"
                     ? "Home"
@@ -69,7 +74,9 @@ export default function Navbar() {
                     ? "About"
                     : section === "portfolio"
                     ? "Projects"
-                    : "Services"}
+                    : section === "what-i-do"
+                    ? "Services"
+                    : "Why Me"}
                 </ScrollLink>
               </li>
             ))}
