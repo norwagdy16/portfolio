@@ -1,17 +1,19 @@
 /** @format */
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-
- 
   const sections = ["hero", "about", "portfolio", "what-i-do", "why-me"];
 
+
+  useEffect(() => {
+    document.documentElement.style.scrollPaddingTop = "100px";
+  }, []);
+
   return (
-    <nav className="fixed w-full z-40 bg-white shadow-md">
+    <nav className="fixed top-0 left-0 w-full z-40 bg-white shadow-md">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         {/* Logo */}
         <div className="text-2xl font-bold text-pink-500">Portfolio</div>
